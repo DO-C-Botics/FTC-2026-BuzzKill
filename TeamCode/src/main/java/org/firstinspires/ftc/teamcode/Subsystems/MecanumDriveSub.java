@@ -23,8 +23,8 @@ public class MecanumDriveSub extends SubsystemBase {
     private final FtcDashboard dashboard = FtcDashboard.getInstance();
 
     public final IMU imu;
-    public boolean isFieldCentric = Constants.mecanumConstants.isFieldCentric; //true = field-centric, false = robot-centric
-    private double strafeCorrection = Constants.mecanumConstants.strafeCorrection;
+    public boolean isFieldCentric = Constants.MecanumConstants.isFieldCentric; //true = field-centric, false = robot-centric
+    private double strafeCorrection = Constants.MecanumConstants.strafeCorrection;
 
     public MecanumDriveSub(DcMotor frontLeft, DcMotor frontRight, DcMotor backLeft, DcMotor backRight, HardwareMap hardwareMap) {
         m_Fl = frontLeft;
@@ -68,9 +68,9 @@ public class MecanumDriveSub extends SubsystemBase {
      */
     public void drive(double forward, double strafe, double rotation) {
         // Apply deadzone
-        forward = applyDeadzone(forward, Constants.mecanumConstants.thresHold);
-        strafe  = applyDeadzone(strafe, Constants.mecanumConstants.thresHold);
-        rotation = applyDeadzone(rotation, Constants.mecanumConstants.thresHold);
+        forward = applyDeadzone(forward, Constants.MecanumConstants.thresHold);
+        strafe  = applyDeadzone(strafe, Constants.MecanumConstants.thresHold);
+        rotation = applyDeadzone(rotation, Constants.MecanumConstants.thresHold);
 
         fwdPower = forward;
         strPower = strafe;

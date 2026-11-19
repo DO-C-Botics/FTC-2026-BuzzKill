@@ -2,9 +2,8 @@ package org.firstinspires.ftc.teamcode;
 
 public class Constants {
 
-    public static final class mecanumConstants{
+    public static final class MecanumConstants {
         public static final double thresHold = 0.05;
-        public static double clippedRotLockOnPower = 0.5;
         public static double strafeCorrection = 1.1;
         public static boolean isFieldCentric = true;
         public static final class encoderAutoConstants{
@@ -20,19 +19,7 @@ public class Constants {
         }
     }
 
-    public static final class limelightConstants{
-
-        public static double min_Tx = 4;
-        public static double max_Tx = 25;
-        public static double min_Shooter_Power = 0.54;
-        public static double max_Shooter_Power = 0.64;
-
-        public static double ShooterLockedZone = 8;
-
-        public static double tyOffSet = -7;
-
-        public static double llLockOnKp = 0.025;
-        public static double lockOnDeadband = 5;
-
+    public static final class OIConstants{
+        public static final double thresHoldController = 0.05;
     }
 }
