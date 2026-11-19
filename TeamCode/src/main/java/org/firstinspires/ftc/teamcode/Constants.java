@@ -22,4 +22,15 @@ public class Constants {
     public static final class OIConstants{
         public static final double thresHoldController = 0.05;
     }
+
+    public static final class PollenShooterConstants{
+        public static final double shooterTolerance = 0.35;
+        public static final double shooterVelocityRAD = 10;
+
+        public static final class PollenShooterIndexerConstants{
+            public static final double indexerSpeed = 1.0;
+            public static double timeOutShooting = 0.35;
+            public static double timeOutBetweenShots = 1.0;
+        }
+    }
 }

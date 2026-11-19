@@ -3,17 +3,24 @@ package org.firstinspires.ftc.teamcode;
 import static org.firstinspires.ftc.teamcode.Constants.OIConstants.thresHoldController;
 
 import com.arcrobotics.ftclib.command.CommandOpMode;
+import com.arcrobotics.ftclib.command.button.Trigger;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 
+import org.firstinspires.ftc.teamcode.Commands.CommandGroups.ShooterRoutine;
 import org.firstinspires.ftc.teamcode.Commands.MecanumDriveCMD;
 import org.firstinspires.ftc.teamcode.Subsystems.MecanumDriveSub;
+import org.firstinspires.ftc.teamcode.Subsystems.PollenIndexerSub;
+import org.firstinspires.ftc.teamcode.Subsystems.PollenShooterSub;
 
 @TeleOp(name = "TeleOp")
 public class RobotContainer extends CommandOpMode {
     private MecanumDriveSub driveSub;
+    private PollenShooterSub pollenShooterSub;
+    private PollenIndexerSub pollenIndexerSub;
     private GamepadEx driverJoystick;
 
     @Override
@@ -24,6 +31,14 @@ public class RobotContainer extends CommandOpMode {
                 hardwareMap.get(DcMotor.class, "back_left"),
                 hardwareMap.get(DcMotor.class, "back_right"),
                 hardwareMap
+        );
+
+        pollenShooterSub = new PollenShooterSub(
+                hardwareMap.get(DcMotorEx.class, "Pollen_Shooter")
+        );
+
+        pollenIndexerSub = new PollenIndexerSub(
+                hardwareMap.get(DcMotorEx.class, "Pollen_Indexer")
         );
 
         driverJoystick = new GamepadEx(gamepad1);
@@ -54,6 +69,11 @@ public class RobotContainer extends CommandOpMode {
                         () -> driverJoystick.getButton(GamepadKeys.Button.START)        // Reset
                 )
         );
+
+        Trigger shootTrigger = new Trigger(() -> {
+            return driverJoystick.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER) > 0.6;
+        });
+        shootTrigger.whileActiveContinuous(new ShooterRoutine(pollenShooterSub, pollenIndexerSub));
     }
 
     private void runCommands() {
