@@ -33,4 +33,8 @@ public class Constants {
             public static double timeOutBetweenShots = 1.0;
         }
     }
+
+    public static final class IntakeConstants{
+        public static final double intakeSpeed = 0.8;
+    }
 }

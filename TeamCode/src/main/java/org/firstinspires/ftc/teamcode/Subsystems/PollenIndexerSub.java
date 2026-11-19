@@ -1,9 +1,10 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
+import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-public class PollenIndexerSub {
+public class PollenIndexerSub extends SubsystemBase {
     DcMotor transferMotor;
 
     public PollenIndexerSub(DcMotor transferMotor){
@@ -11,10 +12,6 @@ public class PollenIndexerSub {
 
         transferMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
-    }
-
-    public DcMotor getTransferMotor(){
-        return transferMotor;
     }
 
     public void setTransferMotorSpeed(double speed){

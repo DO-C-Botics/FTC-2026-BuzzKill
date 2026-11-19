@@ -25,7 +25,7 @@ public class PollenIndexerCMD extends CommandBase {
         this.transferSpeed = transferSpeed;
         this.m_timeIndexing = timeIndexing;
 
-        addRequirements();
+        addRequirements(pollenIndexerSub);
 
     }
 
