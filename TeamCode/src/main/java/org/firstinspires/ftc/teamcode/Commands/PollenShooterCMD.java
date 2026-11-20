@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Commands;
 
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
 import static org.firstinspires.ftc.teamcode.Constants.PollenShooterConstants.shooterTolerance;
 
 import com.arcrobotics.ftclib.command.CommandBase;
@@ -27,8 +28,13 @@ public class PollenShooterCMD extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        boolean isAtSetVelocity = (pollenShooterSub.getFlyWheelMotor().getVelocity(AngleUnit.RADIANS) > (flyWheelPower - shooterTolerance))
-                && (pollenShooterSub.getFlyWheelMotor().getVelocity(AngleUnit.RADIANS) < (flyWheelPower + shooterTolerance));
+        double currentVelocity = Math.abs(pollenShooterSub.getFlyWheelMotor().getVelocity(AngleUnit.RADIANS));
+        double targetVelocity = Math.abs(flyWheelPower);
+
+        boolean isAtSetVelocity = (currentVelocity > (targetVelocity - shooterTolerance))
+                && (currentVelocity < (targetVelocity + shooterTolerance));
+
         return isAtSetVelocity;
     }
+
 }

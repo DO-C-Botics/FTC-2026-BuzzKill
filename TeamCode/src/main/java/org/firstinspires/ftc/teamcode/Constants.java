@@ -24,8 +24,13 @@ public class Constants {
     }
 
     public static final class PollenShooterConstants{
-        public static final double shooterTolerance = 0.35;
-        public static final double shooterVelocityRAD = 10;
+        public static final double shooterTolerance = 0.4;
+        public static final double shooterVelocityRAD = 10.90;
+
+        public static final double shooterKp = 13.0;
+        public static final double shooterKi = 0.1;
+        public static final double shooterKd = 0.0;
+        public static final double shooterKf = 15.0;
 
         public static final class PollenShooterIndexerConstants{
             public static final double indexerSpeed = 1.0;
@@ -35,6 +40,6 @@ public class Constants {
     }
 
     public static final class IntakeConstants{
-        public static final double intakeSpeed = 0.8;
+        public static final double intakeSpeed = 0.4;
     }
 }

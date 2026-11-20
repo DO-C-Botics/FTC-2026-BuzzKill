@@ -11,11 +11,19 @@ public class IntakeCMD extends CommandBase {
 
     IntakeSub intakeSub;
     public final double intakeSpeed = Constants.IntakeConstants.intakeSpeed;
+    public boolean isReversed;
     private final FtcDashboard dashboard = FtcDashboard.getInstance();
 
     public IntakeCMD(IntakeSub intakeSub){
         this.intakeSub = intakeSub;
         addRequirements(intakeSub);
+    }
+
+    public IntakeCMD(IntakeSub intakeSub, boolean isReversed){
+            this.intakeSub = intakeSub;
+            this.isReversed = isReversed;
+            addRequirements(intakeSub);
+
     }
 
     @Override
@@ -26,7 +34,11 @@ public class IntakeCMD extends CommandBase {
     @Override
     public void execute() {
 
-        intakeSub.setIntakeMotorSpeed(intakeSpeed);
+        if(isReversed) {
+            intakeSub.setIntakeMotorSpeed(-intakeSpeed);
+        } else {
+            intakeSub.setIntakeMotorSpeed(intakeSpeed);
+        }
 
         TelemetryPacket TransferPacket = new TelemetryPacket();
         TransferPacket.put("Intake Speed", intakeSpeed);

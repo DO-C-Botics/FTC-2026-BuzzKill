@@ -13,6 +13,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.ShooterRoutine;
 import org.firstinspires.ftc.teamcode.Commands.IntakeCMD;
 import org.firstinspires.ftc.teamcode.Commands.MecanumDriveCMD;
+import org.firstinspires.ftc.teamcode.Commands.PollenIndexerCMD;
 import org.firstinspires.ftc.teamcode.Commands.PollenShooterCMD;
 import org.firstinspires.ftc.teamcode.Subsystems.IntakeSub;
 import org.firstinspires.ftc.teamcode.Subsystems.MecanumDriveSub;
@@ -94,6 +95,11 @@ public class RobotContainer extends CommandOpMode {
             return driverJoystick.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER) > 0.6;
         });
         intakeTrigger.whileActiveContinuous(new IntakeCMD(intakeSub));
+
+        driverJoystick.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER)
+                .whileActiveContinuous(
+                        new IntakeCMD(intakeSub, true)
+                );
     }
 
     private void runCommands() {
