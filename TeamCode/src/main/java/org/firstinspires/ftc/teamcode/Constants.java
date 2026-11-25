@@ -1,5 +1,9 @@
 package org.firstinspires.ftc.teamcode;
 
+
+import com.acmerobotics.dashboard.config.Config;
+
+@Config
 public class Constants {
 
     public static final class MecanumConstants {
@@ -23,23 +27,28 @@ public class Constants {
         public static final double thresHoldController = 0.05;
     }
 
-    public static final class PollenShooterConstants{
-        public static final double shooterTolerance = 0.15;
-        public static final double shooterVelocityRAD = 10.75;
 
-        public static final double shooterKp = 13.0;
-        public static final double shooterKi = 0.1;
-        public static final double shooterKd = 0.0;
-        public static final double shooterKf = 15.5;
+    public static class PollenShooterConstants{
+        public static  double shooterTolerance = 0.2;
+        public static  double shooterVelocityRAD = 10.75;
+
+        public static  double shooterKp = 10.0;
+        public static  double shooterKi = 0.1;
+        public static  double shooterKd = 0.0;
+        public static  double shooterKf = 14.0;
 
         public static final class PollenShooterIndexerConstants{
             public static final double indexerSpeed = 1.0;
-            public static double timeOutShooting = 0.35;
-            public static double timeOutBetweenShots = 1.0;
+            public static double timeOutShooting = 0.7;
+            public static double timeOutBetweenShots = 0.4;
         }
     }
 
     public static final class IntakeConstants{
         public static final double intakeSpeed = 0.75;
+    }
+
+    public static final class ConversionConstants{
+        public static final double inchesToFeet = 12; //divide
     }
 }

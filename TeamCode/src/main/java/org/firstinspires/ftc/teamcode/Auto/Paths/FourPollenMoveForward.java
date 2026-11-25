@@ -18,7 +18,7 @@ public class FourPollenMoveForward extends AutoRobotContainer {
                         new WaitCMD(5.0),
                         new MoveRobotEncoderXY_CMD(-1.5,-1.5, 3, 0.4, driveSub),
                         new WaitCMD(0.8),
-                        new ShooterRoutine(flywheelSub, indexerSub)
+                        new ShooterRoutine(flywheelSub, indexerSub, limelightSub)
 
                 )
         );

@@ -16,6 +16,7 @@ import org.firstinspires.ftc.teamcode.Commands.MecanumDriveCMD;
 import org.firstinspires.ftc.teamcode.Commands.PollenIndexerCMD;
 import org.firstinspires.ftc.teamcode.Commands.PollenShooterCMD;
 import org.firstinspires.ftc.teamcode.Subsystems.IntakeSub;
+import org.firstinspires.ftc.teamcode.Subsystems.LimelightSub;
 import org.firstinspires.ftc.teamcode.Subsystems.MecanumDriveSub;
 import org.firstinspires.ftc.teamcode.Subsystems.PollenIndexerSub;
 import org.firstinspires.ftc.teamcode.Subsystems.PollenShooterSub;
@@ -25,6 +26,7 @@ public class RobotContainer extends CommandOpMode {
     private MecanumDriveSub driveSub;
     private PollenShooterSub pollenShooterSub;
     private PollenIndexerSub pollenIndexerSub;
+    private LimelightSub limelightSub;
     private IntakeSub intakeSub;
     private GamepadEx driverJoystick;
 
@@ -49,6 +51,8 @@ public class RobotContainer extends CommandOpMode {
         intakeSub = new IntakeSub(
                 hardwareMap.get(DcMotor.class, "Intake")
         );
+
+        limelightSub = new LimelightSub(hardwareMap);
 
 
         driverJoystick = new GamepadEx(gamepad1);
@@ -83,12 +87,12 @@ public class RobotContainer extends CommandOpMode {
         Trigger shootTrigger = new Trigger(() -> {
             return driverJoystick.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER) > 0.6;
         });
-        shootTrigger.whileActiveContinuous(new ShooterRoutine(pollenShooterSub, pollenIndexerSub));
+        shootTrigger.whileActiveContinuous(new ShooterRoutine(pollenShooterSub, pollenIndexerSub, limelightSub));
 
         //Kill Shooter
         driverJoystick.getGamepadButton(GamepadKeys.Button.DPAD_DOWN)
                 .whileActiveContinuous(
-                        new PollenShooterCMD(pollenShooterSub, 0)
+                        new PollenShooterCMD(pollenShooterSub, limelightSub, 0)
                 );
 
         Trigger intakeTrigger = new Trigger(() -> {

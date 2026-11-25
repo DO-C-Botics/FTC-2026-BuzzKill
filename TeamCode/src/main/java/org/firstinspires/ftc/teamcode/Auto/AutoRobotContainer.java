@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.ShooterRoutine;
 import org.firstinspires.ftc.teamcode.Commands.PollenShooterCMD;
+import org.firstinspires.ftc.teamcode.Subsystems.LimelightSub;
 import org.firstinspires.ftc.teamcode.Subsystems.MecanumDriveSub;
 import org.firstinspires.ftc.teamcode.Subsystems.PollenIndexerSub;
 import org.firstinspires.ftc.teamcode.Subsystems.PollenShooterSub;
@@ -24,6 +25,8 @@ public class AutoRobotContainer extends CommandOpMode {
     public PollenShooterSub flywheelSub;
     public DcMotor indexerMotor;
     public PollenIndexerSub indexerSub;
+
+    public LimelightSub limelightSub;
 
     @Override
     public void initialize() {
@@ -45,8 +48,6 @@ public class AutoRobotContainer extends CommandOpMode {
         indexerMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
 
-
-
         initSubsystems();
         path();
 
@@ -61,6 +62,8 @@ public class AutoRobotContainer extends CommandOpMode {
 
         indexerSub = new PollenIndexerSub(indexerMotor);
 
+        limelightSub = new LimelightSub(hardwareMap);
+
     }
 
 
@@ -68,7 +71,7 @@ public class AutoRobotContainer extends CommandOpMode {
     public void runShooter(){
         schedule(
                 new SequentialCommandGroup(
-                        new ShooterRoutine(flywheelSub, indexerSub)
+                        new ShooterRoutine(flywheelSub, indexerSub, limelightSub)
                 )
         );
     }
@@ -78,7 +81,7 @@ public class AutoRobotContainer extends CommandOpMode {
     public void stopShooter(){
         schedule(
                 new SequentialCommandGroup(
-                        new PollenShooterCMD(flywheelSub, 0)
+                        new PollenShooterCMD(flywheelSub, limelightSub, 0)
                 )
         );
     }
