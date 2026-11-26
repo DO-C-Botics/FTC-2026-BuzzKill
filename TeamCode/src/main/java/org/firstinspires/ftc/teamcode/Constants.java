@@ -28,11 +28,12 @@ public class Constants {
     }
 
 
+    @Config
     public static class PollenShooterConstants{
         public static  double shooterTolerance = 0.2;
         public static  double shooterVelocityRAD = 10.75;
 
-        public static  double shooterKp = 10.0;
+        public static  double shooterKp = 11.78;
         public static  double shooterKi = 0.1;
         public static  double shooterKd = 0.0;
         public static  double shooterKf = 14.0;
@@ -40,7 +41,7 @@ public class Constants {
         public static final class PollenShooterIndexerConstants{
             public static final double indexerSpeed = 1.0;
             public static double timeOutShooting = 0.7;
-            public static double timeOutBetweenShots = 0.4;
+            public static double timeOutBetweenShots = 0.6;
         }
     }
 

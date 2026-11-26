@@ -14,7 +14,7 @@ public class ShooterLookup {
         table.put(3.0 / Constants.ConversionConstants.inchesToFeet,  10.0);
         table.put(3.2 / Constants.ConversionConstants.inchesToFeet, 10.5);
         table.put(3.3 / Constants.ConversionConstants.inchesToFeet, 10.8);
-        table.put(3.5 / Constants.ConversionConstants.inchesToFeet, 11.0);
+        table.put(3.5 / Constants.ConversionConstants.inchesToFeet, 11.2);
     }
 
     public static double getInterpolatedVelocity(double distanceInches) {
