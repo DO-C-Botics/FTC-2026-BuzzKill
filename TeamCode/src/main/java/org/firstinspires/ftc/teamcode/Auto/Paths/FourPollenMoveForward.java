@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Auto.Paths;
 
+import com.arcrobotics.ftclib.command.ParallelRaceGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
@@ -15,10 +16,12 @@ public class FourPollenMoveForward extends AutoRobotContainer {
     public void path() {
         schedule(
                 new SequentialCommandGroup(
-                        new WaitCMD(5.0),
-                        new MoveRobotEncoderXY_CMD(-1.5,-1.5, 3, 0.4, driveSub),
-                        new WaitCMD(0.8),
+                        new WaitCMD(2.0),
+                        new MoveRobotEncoderXY_CMD(-2.0,-2.0, 3, 0.4, driveSub),
+                        new ParallelRaceGroup(
+                                new WaitCMD(10.0),
                         new ShooterRoutine(flywheelSub, indexerSub, limelightSub)
+                        )
 
                 )
         );

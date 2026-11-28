@@ -12,6 +12,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.ShooterRoutine;
 import org.firstinspires.ftc.teamcode.Commands.IntakeCMD;
+import org.firstinspires.ftc.teamcode.Commands.LimelightLockCMD;
 import org.firstinspires.ftc.teamcode.Commands.MecanumDriveCMD;
 import org.firstinspires.ftc.teamcode.Commands.PollenIndexerCMD;
 import org.firstinspires.ftc.teamcode.Commands.PollenShooterCMD;
@@ -74,6 +75,7 @@ public class RobotContainer extends CommandOpMode {
 
     public void setDefaultCommands() {
 
+        //DRIVE
         driveSub.setDefaultCommand(
                 new MecanumDriveCMD(
                         driveSub,
@@ -84,6 +86,7 @@ public class RobotContainer extends CommandOpMode {
                 )
         );
 
+        //SHOOT TRIGGER
         Trigger shootTrigger = new Trigger(() -> {
             return driverJoystick.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER) > 0.6;
         });
@@ -95,14 +98,20 @@ public class RobotContainer extends CommandOpMode {
                         new PollenShooterCMD(pollenShooterSub, limelightSub, 0)
                 );
 
-        Trigger intakeTrigger = new Trigger(() -> {
+        //LIMELIGHT LOCK
+        Trigger lockTrigger = new Trigger(() -> {
             return driverJoystick.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER) > 0.6;
         });
-        intakeTrigger.whileActiveContinuous(new IntakeCMD(intakeSub));
+        lockTrigger.whileActiveContinuous(new LimelightLockCMD(limelightSub, driveSub));
 
+        //INTAKE
         driverJoystick.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER)
                 .whileActiveContinuous(
                         new IntakeCMD(intakeSub, true)
+                );
+        driverJoystick.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER)
+                .whileActiveContinuous(
+                        new IntakeCMD(intakeSub)
                 );
     }
 

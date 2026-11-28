@@ -10,6 +10,12 @@ public class Constants {
         public static final double thresHold = 0.05;
         public static double strafeCorrection = 1.1;
         public static boolean isFieldCentric = true;
+        public static double llLockOnKp = 0.05;
+        public static double lockOnDeadband = 5;
+        public static double clippedRotLockOnPower = 0.5;
+        public static double ShooterLockedZone = 8;
+
+        public static double tyOffSet = -7;
         public static final class encoderAutoConstants{
             public static final double DRIVE_SPEED = 0.25;
             public static final double TURN_SPEED = 0.5;
@@ -33,15 +39,15 @@ public class Constants {
         public static  double shooterTolerance = 0.2;
         public static  double shooterVelocityRAD = 10.75;
 
-        public static  double shooterKp = 11.78;
+        public static  double shooterKp = 15.0;
         public static  double shooterKi = 0.1;
         public static  double shooterKd = 0.0;
-        public static  double shooterKf = 14.0;
+        public static  double shooterKf = 13.5;
 
         public static final class PollenShooterIndexerConstants{
             public static final double indexerSpeed = 1.0;
             public static double timeOutShooting = 0.7;
-            public static double timeOutBetweenShots = 0.6;
+            public static double timeOutBetweenShots = 0.5;
         }
     }
 
